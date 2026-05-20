@@ -1,0 +1,23 @@
+name: DevOps Automation Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js Environment
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Build Docker Image Test
+      run: |
+        docker build -t belajar-devops-app:latest .
+        echo "Skenario Baik: Docker sukses membungkus aplikasi tanpa eror!"
